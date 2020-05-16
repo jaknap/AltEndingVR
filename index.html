@@ -1,0 +1,120 @@
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,maximum-scale=1">
+  <title>VRFlix</title>
+  <script src="aframe-extras.js"></script>
+  <script src="aframe-video-controls.min.js"></script>
+
+</head>
+
+<body>
+  <a-scene vr-mode-ui="enabled: true">
+    <a-assets>
+      <a-mixin id="checkpoint"></a-mixin>
+      <a-mixin id="checkpoint-hovered" color="#6CEEB5"></a-mixin>
+      <!-- VIDEO -->
+
+
+      <video muted id="Orange" autoplay
+        src="https://cdn.glitch.com/b8ec5dbd-2134-4736-a9f5-91e2578cb789%2F20200516_094302.mp4?v=1589645570863"
+        crossorigin="anonymous" /></video>
+      <video muted id="Tangerine" autoplay loop="true"
+        src="https://cdn.glitch.com/b8ec5dbd-2134-4736-a9f5-91e2578cb789%2F20200516_094335.mp4?v=1589645596373"
+        crossorigin="anonymous" /></video>
+      <video muted id="Lemon" autoplay loop="true"
+        src="https://cdn.glitch.com/b8ec5dbd-2134-4736-a9f5-91e2578cb789%2F20200516_094451.mp4?v=1589645632829"
+        crossorigin="anonymous" /></video>
+    </a-assets>
+
+
+    <a-entity camera="userHeight: 1.6" position="-1.5 -0.3 -4.1" rotation="0 -90 0" universal-controls="checkpoint"
+      checkpoint-controls="mode: animate">
+
+      <a-entity cursor position="0 0 -1" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03;"
+        material="color: #CCC; shader: flat;">
+      </a-entity>
+
+    </a-entity>
+
+
+    </a-entity>
+
+
+    <a-entity position="1 0 1">
+      <a-cylinder id="_tangerine" checkpoint="offset: 0 1.6 0" radius="1" height="0.5" position="2 0 -7.2"
+        color="#39BB82"></a-cylinder>
+      <a-cylinder id="_lemon" checkpoint="offset: 0 1.6 0" radius="1" height="0.5" position="1.5 0 -2" color="#39BB82">
+      </a-cylinder>
+    </a-entity>
+
+
+    <!--TV-->
+
+    <a-entity geometry="primitive: plane" material="shader: flat; src: #Orange" position="5.25 1.1 -4" rotation="0 0 0"
+      height="1.8" width="0.2"></a-entity>
+    <a-plane material="shader: flat;src: #Orange" position="2.5 1.1 -7.5" rotation="0 -20 0" height="1.8" width="6">
+    </a-plane>
+    <a-plane material="shader: flat;src: #Orange" position="4 1.1 -0.3" rotation="0 -135 0" height="1.8" width="6">
+    </a-plane>
+    <!-- VIDEO -->
+    <!-- VIDEO -->
+
+
+    <a-video src="#Orange" class="video" width="6" height="1.8" position="5.15 1.1 -4" rotation="0 -90 0"></a-video>
+
+    <!--CONTROLS -->
+
+    <!--<a-entity video-controls="src:#friday" distance="3.6" position="5.0 0.7 -3.8">-->
+    <a-entity video-controls="src:#Orange" distance="3.6" rotation="" scale="" visible="" position="5.0 1.0 -4">
+      <a-image src="#playButton" distance="3.6" rotation="" scale="" visible="" position="4.8 0.5 -3">
+        <!--<a-image src="#playButton" position="4.15 1.1 -4">-->
+    </a-entity>
+
+
+
+    <!--FLOOR-->
+    <a-plane color="black" position="0 0 -4" rotation="-90 0 0" width="16" height="24"></a-plane>
+    <!--CIELING-->
+    <a-box color="black" position="0 2.65 -4" rotation="90 0 0" depth="0.5" width="15" height="22.5"></a-box>
+    <!--WALL-->
+    <a-box color="black" position="0.5 0.9 -8.75" rotation="0 0 0" depth="0.5" width="12" height="3"></a-box>
+    <a-box color="black" position="5.75 0.9 -4" rotation="0 -90 0" depth="0.5" width="9" height="3"></a-box>
+    <a-box color="black" position="-5.75 0.9 -4" rotation="0 -90 0" depth="0.5" width="9" height="3"></a-box>
+    <a-box color="black" position="-3.0 0.9 0.25" rotation="0 0 0" depth="0.5" width="6" height="3"></a-box>
+    <a-box color="black" position="-0.2 1.1 7.5" rotation="0 0 0" depth="0.5" width="16" height="3"></a-box>
+    <a-box color="black" position="-5.9 1.1 7.5" rotation="0 -90 0" depth="0.5" width="16" height="3"></a-box>
+    <a-box color="black" position="7.2 1.1 7.5" rotation="0 -90 0" depth="0.5" width="16" height="3"></a-box>
+
+    <a-sky color="black"></a-sky>
+  </a-scene>
+
+  <script>
+    let vid = document.getElementById("Orange");
+    let counter = 0;
+    vid.onended = function () {
+      if (counter < 1) {
+        alert("Select Ending");
+      }
+      counter++;
+
+    };
+
+    function playVideoTangerine() {
+      alert("Tangerine Video Selected");
+      vid.src = 'https://cdn.glitch.com/b8ec5dbd-2134-4736-a9f5-91e2578cb789%2F20200516_094335.mp4?v=1589645596373';
+    }
+
+    function playVideoLemon() {
+      alert("Lemon Video Selected");
+      vid.src = 'https://cdn.glitch.com/b8ec5dbd-2134-4736-a9f5-91e2578cb789%2F20200516_094451.mp4?v=1589645632829';
+    }
+
+    document.getElementById('_tangerine').addEventListener('click', playVideoTangerine);
+    document.getElementById('_lemon').addEventListener('click', playVideoLemon);
+  </script>
+
+</body>
+
+</html>
